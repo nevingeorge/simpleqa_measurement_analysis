@@ -1,0 +1,10 @@
+domain,n_current,G_current,n_required_at_0.70,n_required_at_0.80,adequate_for_group,adequate_for_individual
+Science and technology,858,0.7753095845717907,581,995,True,False
+Politics,709,0.7403503537489489,581,995,True,False
+Art,550,0.6886580598594234,581,995,False,False
+Geography,424,0.6303382649693078,581,995,False,False
+Sports,368,0.5967683319476967,581,995,False,False
+Music,341,0.5783045514749574,581,995,False,False
+TV shows,293,0.5409350219149321,581,995,False,False
+History,173,0.4102883182277006,581,995,False,False
+Video games,135,0.3518789110576269,581,995,False,False

@@ -1,0 +1,26 @@
+# Virtual environment
+sqa_eval/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data (raw download; simpleqa_prepared.parquet is committed)
+data/simpleqa_raw.csv
+
+# Large result files (scores_long.parquet and CSVs are committed; bootstrap is large)
+results/bootstrap_vc.parquet
+results/score_matrix.parquet
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code internal
+.claude/
