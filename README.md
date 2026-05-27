@@ -1,7 +1,5 @@
 # Domain Validity of SimpleQA via Generalizability Theory
 
-End-to-end pipeline for the paper *"How Domain-Dependent Is SimpleQA? A Generalizability-Theory Analysis."*
-
 We evaluate nine open-source LLMs on the SimpleQA benchmark, decompose score variance using generalizability theory (G-theory), and ask: does SimpleQA's domain sampling give reliable model rankings, and would re-weighting domains to equal contribution change those rankings?
 
 ---
