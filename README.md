@@ -6,7 +6,9 @@ We evaluate nine open-source LLMs on the SimpleQA benchmark, decompose score var
 
 ## Quick start — skip Modal, use pre-computed results
 
-All inference and grading results are already committed to this repository in `results/scores_long.parquet`. To reproduce every figure and table in the paper without re-running expensive GPU inference:
+All inference and grading results are already committed to this repository in
+`results/scores_long.parquet`. To reproduce every figure and table in the paper
+without re-running expensive GPU inference:
 
 ```bash
 git clone <repo-url>
@@ -19,9 +21,17 @@ source sqa_eval/bin/activate          # Windows: sqa_eval\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
+# Download and prepare the SimpleQA dataset (~30 s, requires internet access)
+python data/prepare_data.py
+
 # Run the full analysis (~4 minutes; bootstrap takes most of that)
 python run_all.py
 ```
+
+`prepare_data.py` downloads the SimpleQA CSV from OpenAI's public blob storage,
+filters to the nine analysis domains, assigns stable item IDs, and writes
+`data/simpleqa_prepared.parquet`. The dataset files are not committed to the
+repository and must be generated before running the analysis.
 
 Outputs land in `results/` (CSV tables) and `figures/` (PNG plots).
 
@@ -185,10 +195,24 @@ python run_all.py
 
 SimpleQA is released publicly by OpenAI:
 - Paper: [SimpleQA: Measuring Short-Form Factuality in Large Language Models](https://openai.com/research/simpleqa) (Wei et al., 2024)
-- Dataset: downloaded automatically by `data/prepare_data.py` from  
-  `https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv`
+- Source: `https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv`
 
-Topic tags are from the Wei et al. post-hoc classification (ChatGPT-generated, included in the CSV metadata field).
+The dataset is **not included in this repository**. Run the preparation script to
+download and process it:
+
+```bash
+python data/prepare_data.py
+```
+
+This fetches the CSV (~1 MB), parses topic tags from the `metadata` column,
+drops the "Other" domain (475 items, heterogeneous bucket that violates
+G-theory's within-facet exchangeability assumption), assigns stable `item_id`s,
+and writes `data/simpleqa_prepared.parquet` (3,851 items across 9 domains).
+
+Topic tags are from the Wei et al. post-hoc classification (ChatGPT-generated,
+included in the CSV metadata field). The analysis relies on these tags as the
+domain structure; their measurement error is documented as a limitation in the
+paper.
 
 ---
 
